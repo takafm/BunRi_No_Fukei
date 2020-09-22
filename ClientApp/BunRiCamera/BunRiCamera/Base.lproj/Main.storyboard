@@ -19,6 +19,10 @@
                                 <rect key="frame" x="20" y="64" width="374" height="635"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="71a-Pb-xWf" userLabel="ShutterView">
+                                <rect key="frame" x="20" y="64" width="374" height="635"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Result" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GAU-Ep-WLt">
                                 <rect key="frame" x="20" y="742" width="374" height="36"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
@@ -31,11 +35,22 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EtY-0U-SuM">
+                                <rect key="frame" x="184" y="731" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="butonTupped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ku1-nm-rVo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="71a-Pb-xWf" firstAttribute="bottom" secondItem="DUb-jp-ajW" secondAttribute="bottom" id="637-5N-kyA"/>
+                            <constraint firstItem="71a-Pb-xWf" firstAttribute="leading" secondItem="DUb-jp-ajW" secondAttribute="leading" id="9tF-mA-SIu"/>
                             <constraint firstItem="fnV-fj-Sto" firstAttribute="top" secondItem="GAU-Ep-WLt" secondAttribute="bottom" constant="8" id="BQZ-Mf-2Dd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DUb-jp-ajW" secondAttribute="trailing" constant="20" id="BWH-ZO-5MS"/>
+                            <constraint firstItem="71a-Pb-xWf" firstAttribute="trailing" secondItem="DUb-jp-ajW" secondAttribute="trailing" id="Co0-1h-uNv"/>
                             <constraint firstItem="DUb-jp-ajW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="Fff-Mb-w6Y"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fnV-fj-Sto" secondAttribute="trailing" constant="20" id="VqF-tW-8Si"/>
                             <constraint firstItem="GAU-Ep-WLt" firstAttribute="top" secondItem="DUb-jp-ajW" secondAttribute="bottom" constant="43" id="aK7-PV-Qyp"/>
@@ -44,6 +59,7 @@
                             <constraint firstItem="GAU-Ep-WLt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ium-e4-VBT"/>
                             <constraint firstItem="DUb-jp-ajW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jV0-gx-kFd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GAU-Ep-WLt" secondAttribute="trailing" constant="20" id="mdI-86-ciq"/>
+                            <constraint firstItem="71a-Pb-xWf" firstAttribute="top" secondItem="DUb-jp-ajW" secondAttribute="top" id="tId-6T-NPb"/>
                             <constraint firstItem="DUb-jp-ajW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="wsF-1C-PJs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -52,6 +68,7 @@
                         <outlet property="cameraView" destination="DUb-jp-ajW" id="cTW-uV-v9e"/>
                         <outlet property="confidenceLabel" destination="fnV-fj-Sto" id="iSH-rJ-Ytk"/>
                         <outlet property="resultLabel" destination="GAU-Ep-WLt" id="m8A-RH-W96"/>
+                        <outlet property="shutterView" destination="71a-Pb-xWf" id="1MK-A8-KeZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

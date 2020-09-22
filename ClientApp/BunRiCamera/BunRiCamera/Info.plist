@@ -62,5 +62,7 @@
 	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>撮影のためにカメラを使用します</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>撮影した画像をフォトライブラリに保存します</string>
 </dict>
 </plist>

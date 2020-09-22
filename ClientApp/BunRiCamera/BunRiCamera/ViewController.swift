@@ -16,12 +16,17 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var confidenceLabel: UILabel!
+    @IBOutlet weak var shutterView: UIView!
 
     var streamImage: CIImage?
     var captureLayer: AVCaptureVideoPreviewLayer?
+    
+    private let CAPTURE_THRESH: Float = 0.9 // スクショを発動するConfidenceの閾値
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        cameraView.layer.cornerRadius = 18
+        shutterView.layer.cornerRadius = 18
         setupCamera()
     }
 
@@ -52,7 +57,10 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         self.streamImage = CIImage(cvImageBuffer: buffer)
         bunriDetection()
     }
-
+    @IBAction func butonTupped(_ sender: Any) {
+        self.fireScreenShot()
+    }
+    
 //    func faceDetection(_ buffer: CVImageBuffer) {
 //        let request = VNDetectFaceRectanglesRequest { (request, error) in
 //            guard let results = request.results as? [VNFaceObservation] else { return }
@@ -108,13 +116,25 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
 
                 DispatchQueue.main.async {
                     self.resultLabel.text = mostConfidentResult.identifier
-                    self.confidenceLabel.text = "Confidence: \(mostConfidentResult.confidence * 100) %"
+                    let confidence = mostConfidentResult.confidence
+                    self.confidenceLabel.text = "Confidence: \(confidence * 100) %"
+                    if confidence >= self.CAPTURE_THRESH { self.fireScreenShot() }
                 }
             }
         
         guard let queryImage = self.streamImage else { return }
         let requestHandler = VNImageRequestHandler(ciImage: queryImage, options: [:])
         guard ( try? requestHandler.perform([request]) ) != nil else { return }
+    }
+    
+    private func fireScreenShot() {
+        self.shutterView.alpha = 1
+        UIGraphicsBeginImageContextWithOptions(UIScreen.main.bounds.size, false, 0.0)
+        self.view.drawHierarchy(in: self.view.bounds, afterScreenUpdates: true)
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        self.shutterView.alpha = 0
     }
 
 //    func scanImage(cgImage: CGImage) {
